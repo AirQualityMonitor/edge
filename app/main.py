@@ -5,9 +5,10 @@ from fastapi import FastAPI, status
 from model import Metric
 from service import MetricService
 from controller import MetricController
+from registery import InMemoryTSDB
 
 app = FastAPI(title="Edge - Air Quality Monitor")
-service = MetricService()
+service = MetricService(InMemoryTSDB())
 controller = MetricController(service)
 
 
