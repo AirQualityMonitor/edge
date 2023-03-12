@@ -13,4 +13,4 @@ jobs:
       - name: Install dependencies
         run: poetry install
       - name: Run all checks
-        run: pre-commit run -a
+        run: poetry run pre-commit run -a
