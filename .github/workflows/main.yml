@@ -1,14 +1,16 @@
-name: GitHub Actions Demo
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+name: Python pre-commit checks
+
 on: [push]
+
 jobs:
-  Explore-GitHub-Actions:
+  build:
+
     runs-on: ubuntu-latest
     steps:
+      - name: Install poetry
+        run: curl -sSL https://install.python-poetry.org | python3 -
       - uses: actions/checkout@v3
-      - run: python3 --version
-      - run: curl -sSL https://install.python-poetry.org | python3 -
-      - run: poetry --version
-      - run: poetry install
-      - run: pre-commit run -a
-
+      - name: Install dependencies
+        run: poetry install
+      - name: Run all checks
+        run: pre-commit run -a
