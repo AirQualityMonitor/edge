@@ -1,0 +1,6 @@
+[run]
+omit =
+    **/*_interface.py
+    **/test_*.py
+    **/__init__.py
+branch = True
