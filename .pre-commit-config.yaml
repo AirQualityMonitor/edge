@@ -1,0 +1,49 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+    - repo: https://github.com/pre-commit/pre-commit-hooks
+      rev: v4.4.0
+      hooks:
+          - id: trailing-whitespace
+          - id: end-of-file-fixer
+          - id: check-yaml
+          - id: check-added-large-files
+          - id: check-ast
+          - id: check-json
+          - id: check-merge-conflict
+          - id: detect-private-key
+          - id: requirements-txt-fixer
+    - repo: https://github.com/pre-commit/mirrors-autopep8
+      rev: 'v2.0.2'
+      hooks:
+          - id: autopep8
+            args: ["-i", "--max-line-length", "120"]
+    - repo: https://github.com/psf/black
+      rev: 23.1.0
+      hooks:
+          - id: black
+            language_version: python3
+    - repo: local
+      hooks:
+        - id: pytest-check
+          name: pytest-check
+          entry: pytest
+          language: system
+          pass_filenames: false
+          always_run: true
+    - repo: local
+      hooks:
+        - id: coverage-pytest
+          name: coverage-pytest
+          entry: coverage  run  -m pytest
+          language: system
+          pass_filenames: false
+          always_run: true
+    - repo: local
+      hooks:
+        - id: coverage-limit
+          name: coverage-limit
+          entry: coverage report --fail-under=100
+          language: system
+          pass_filenames: false
+          always_run: true
